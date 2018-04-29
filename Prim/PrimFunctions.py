@@ -1,26 +1,6 @@
 # -*- coding: utf-8 -*-
-import Weighted_Graph as wg
 import re
-
-class Prim(object):
-    
-    def __init__(self,fileName="Example.txt"):
-        graph= wg.Weighted_Graph(fileName)  #the intial graph. tree will be a subset of this
-        tree= wg.Weighted_Graph()                #the graph the tree will be made to fill
-        
-        while(len(tree.vertex_list()) != len(graph.vertex_list())):
-            incidentEdges=wg.Weighted_Graph()
-            incidentEdges=generateIncidentEdges(graph,tree)
-            incidentEdges=checkIsTree(incidentEdges,tree)
-            minCostEdge=findMinimumEdge(incidentEdges)
-            tree.add_edge(minCostEdge,graph.get_weight(minCostEdge))
-            
-        self.MSTree=tree
-        self.origin=graph        
-        
-    def __str__(self):
-        self.MSTree.draw_graph()
-        return(str(self.MSTree))
+from Weighted_Graph import Weighted_Graph as wg
 
 def generateIncidentEdges(graph,tree):
     #Takes two Weighted Graph operands. Generates all incident edges of 2nd based on 1st.
@@ -68,6 +48,3 @@ def findMinimumEdge(incidentEdges):
         if(incidentEdges.get_weight(i)<incidentEdges.get_weight(minkey)):
             minkey=i
     return minkey
-
-p=Prim()
-print(p)
