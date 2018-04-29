@@ -24,6 +24,3 @@ class Prim(object):
     def __str__(self):
         self.MSTree.draw_graph()
         return(str(self.MSTree))
-
-p=Prim()
-print(p)
